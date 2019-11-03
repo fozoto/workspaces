@@ -1,0 +1,47 @@
+server:
+  port: 9304
+  servlet:
+    context-path: /user-center
+
+spring:
+  profiles: dev
+euerka:
+  server:
+    hostname: 127.0.0.1
+---
+spring:
+  profiles: uat
+euerka:
+  server:
+    hostname: 192.168.1.1
+---
+
+spring:
+  application:
+    name: user-center
+  profiles:
+    active: ${DEPLOYMODE:dev}
+  cloud:
+    config:
+      fail-fast: true
+      username: root
+      password: ${CONFIG_SERVER_PASSWORD:qingyan}
+      discovery:
+        enabled: true
+        service-id: config-server
+      retry:
+        initial-interval: 2000
+        max-attempts: 10
+        max-interval: 10000
+        multiplier: 2
+
+eureka:
+  instance:
+    preferIpAddress: true
+    metadataMap:
+      user: root
+      password: qingyan
+      configPath: /user-center
+  client:
+    serviceUrl:
+      defaultZone: http://root:${EUREKA_SERVER_PASSOWRD:qingyan}@${euerka.server.hostname}:9301/registry-server/eureka

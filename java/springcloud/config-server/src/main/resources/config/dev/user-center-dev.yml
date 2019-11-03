@@ -1,0 +1,19 @@
+server:
+  port: 9304
+  servlet:
+    context-path: /user-center
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost/springcloud?userSSL=false
+      username: root
+      password: qingyan2
+      driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  mapper-locations: classpath:mapper/**

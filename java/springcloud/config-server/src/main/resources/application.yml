@@ -1,0 +1,26 @@
+server:
+  port: 9303
+
+spring:
+  application:
+    name: config-server
+  security:
+    user:
+      name: root
+      password: qingyan
+  profiles:
+    active: native
+  cloud:
+    config:
+      overrideNone: true
+      server:
+        native:
+#          searchLocations: classpath:config/dev/
+          searchLocations: classpath:config/dev/,file:/data/config/dev/
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://root:qingyan@localhost:9301/registry-server/eureka/

@@ -1,0 +1,15 @@
+server:
+  port: 9302
+  servlet:
+    context-path: /gateway-server
+
+spring:
+  application:
+    name: gateway-server
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://root:qingyan@192.168.0.100:9301/registry-server/eureka

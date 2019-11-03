@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fozoto.springcloud.user.mapper.UserMapper">
+
+    <insert id="add" parameterType="com.fozoto.springcloud.user.entity.User">
+        insert into t_user(id, username, `password`, nickname, telephone, real_name, identity_card, gender, `status`)
+        values (#{id}, #{username}, #{password}, #{nickname}, #{telephone}, #{realName}, #{identityCard}, #{gender}, #{status})
+    </insert>
+</mapper>

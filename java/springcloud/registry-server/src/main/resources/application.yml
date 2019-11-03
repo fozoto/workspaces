@@ -1,0 +1,23 @@
+server:
+  port: 9301
+  servlet:
+    context-path: /registry-server
+
+spring:
+  application:
+    name: registry-server
+  security:
+    user:
+      name: root
+      password: qingyan
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://root:qingyan@localhost:9301/registry-server/eureka/
+  server:
+    eviction-interval-timer-in-ms: 3000

@@ -1,0 +1,46 @@
+server:
+  port: 9304
+  servlet:
+    context-path: /user-center
+
+spring:
+  application:
+    name: user-center
+  profiles:
+    active: ${DEPLOYMODE:dev}
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost/springcloud?userSSL=false
+      username: root
+      password: qingyan
+      driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    config:
+      fail-fast: true
+      username: root
+      password: qingyan
+      name: config-server
+      discovery:
+        enabled: true
+        service-id: config-server
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    metadataMap:
+      user: root
+      password: qingyan
+      configPath: /user-center
+  client:
+    serviceUrl:
+      defaultZone: http://root:qingyan@192.168.0.100:9301/registry-server/eureka
+
+mybatis:
+#  type-aliases-package: com.fozoto.springcloud.user.entity
+#  type-handlers-package: com.example.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  mapper-locations: classpath:mapper/**
